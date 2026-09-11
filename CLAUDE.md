@@ -1,0 +1,1 @@
+/Users/iagocotias/cafe-da-serra/AGENTS.md

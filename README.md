@@ -23,8 +23,10 @@ Por isso, duas regras:
 1. **Sempre `git pull` antes de começar a trabalhar.** Pode ter commit do editor esperando.
 2. **Não use `shopify theme push` no tema conectado.** Quem entrega código pra ele é o git.
 
-O tema conectado fica **não publicado** (na biblioteca de temas) até a gente
-publicar de propósito. Push na `main` não muda a loja ao vivo.
+O tema conectado se chama `cafe-da-serra/main` no admin e é o **tema
+publicado**. Push na `main` muda a loja. Hoje isso é seguro porque a loja está
+"Em desenvolvimento" e pede senha pra visitante. Quando a loja for lançada, o
+fluxo muda: trabalho em branch, e só entra na `main` o que pode ir ao ar.
 
 ## Pré-requisitos
 

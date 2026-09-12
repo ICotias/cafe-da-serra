@@ -12,15 +12,9 @@
     "main": {
       "type": "hello-world",
       "settings": {}
-    },
-    "custom_section_4ztee3": {
-      "type": "custom-section",
-      "name": "t:general.custom_section",
-      "settings": {}
     }
   },
   "order": [
-    "main",
-    "custom_section_4ztee3"
+    "main"
   ]
 }

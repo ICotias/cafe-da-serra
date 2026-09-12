@@ -18,10 +18,22 @@ A sincronização é nos dois sentidos:
 - Salvar no editor de temas (Personalizar) → a Shopify faz um commit na `main`
   como `shopify[bot]`, mexendo em `config/settings_data.json` e em `templates/*.json`.
 
-Por isso, duas regras:
+Por isso, quatro regras:
 
 1. **Sempre `git pull` antes de começar a trabalhar.** Pode ter commit do editor esperando.
 2. **Não use `shopify theme push` no tema conectado.** Quem entrega código pra ele é o git.
+3. **Depois de salvar no editor, espere o commit do `shopify[bot]` chegar e mais uns
+   2 minutos antes de fazer push que mexa no mesmo JSON.** Na fatia 1, um revert
+   feito 49 s depois do commit do bot foi registrado como aplicado no log da
+   Shopify, mas a loja ficou com a versão antiga até o push seguinte.
+4. **JSON no git não é byte a byte o JSON na loja.** A Shopify reescreve
+   `templates/*.json` e `config/settings_data.json` ao receber e descarta valores
+   padrão. Pra conferir o que a loja tem de verdade, use
+   `shopify theme pull --theme 188652159295 --only <arquivo> --path <pasta temporária>`.
+
+Commit com Liquid quebrado não derruba a loja: a Shopify recusa o arquivo, a
+loja fica no último commit bom, e o próximo commit bom sincroniza normalmente.
+O log de cada sincronização fica em **Ver logs**, no card do tema.
 
 O tema conectado se chama `cafe-da-serra/main` no admin e é o **tema
 publicado**. Push na `main` muda a loja. Hoje isso é seguro porque a loja está
